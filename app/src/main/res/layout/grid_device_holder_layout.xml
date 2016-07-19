@@ -97,11 +97,23 @@
             android:background="@mipmap/ic_colorpallet"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_above="@+id/deviceIp"
+            android:id="@+id/btnEffects"
+            android:background="@mipmap/ic_effects"
+            android:layout_marginLeft="5dp" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             />
+
     </LinearLayout>
 
 </LinearLayout>

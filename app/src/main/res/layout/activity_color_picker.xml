@@ -22,14 +22,21 @@
             android:layout_gravity="left"
             />
 
-
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSaveColor"
+            android:background="@android:drawable/ic_menu_save"
+            android:layout_gravity="right"
+            android:textColor="@android:color/white" />
     </android.support.v7.widget.Toolbar>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="16dp" >
+        android:padding="16dp"
+        android:background="@android:color/white">
 
         <com.github.danielnilsson9.colorpickerview.view.ColorPickerView
             android:id="@id/colorpickerview__color_picker_view"
@@ -67,18 +74,9 @@
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.5" />
+
         </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_device_dialog_DeviceBtnSave"
-            android:id="@+id/btnSaveColor"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/color_indigo"
-            android:textColor="@android:color/white"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 
