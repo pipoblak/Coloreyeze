@@ -98,7 +98,7 @@ public class ColorPickerActivity extends AppCompatActivity implements OnColorCha
         if(mWebSocket.getConected() == false && firstTime==false){
             conectWebSocket(ip);
        }
-        if (startTime + 100 < System.currentTimeMillis()) {
+        if (startTime + 150 < System.currentTimeMillis()) {
         mWebSocket.sendMessage("set_RGBs(" + Color.green(newColor) + "," + Color.red(newColor) + "," + Color.blue(newColor) + "," +  pixels +")");
         firstTime=false;
        // Log.v("a",mColorPickerView.getColor() + "  ALPHA:" + Color.alpha(newColor));
