@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="rainbow">
+        <item>@color/color_red</item>
+        <item>@color/color_pink</item>
+        <item>@color/color_purple</item>
+        <item>@color/color_deep_purple</item>
+        <item>@color/color_indigo</item>
+        <item>@color/color_blue</item>
+        <item>@color/color_light_blue</item>
+        <item>@color/color_cyan</item>
+        <item>@color/color_teal</item>
+        <item>@color/color_green</item>
+        <item>@color/color_light_green</item>
+        <item>@color/color_lime</item>
+        <item>@color/color_yellow</item>
+        <item>@color/color_amber</item>
+        <item>@color/color_orange</item>
+        <item>@color/color_brown</item>
+        <item>@color/color_grey</item>
+        <item>@color/color_blue_grey</item>
+    </array>
+
+</resources>

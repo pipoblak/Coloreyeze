@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Coloreyeze</string>
+
+    <string name="confirmation_yes">Sim</string>
+    <string name="confirmation_no">Não</string>
+    <string name="confirmation_are_you_sure">Você Tem Certeza?</string>
+    <string name="confirmation_are_you_sure_delete">Você Tem Certeza Que Deseja Excluir Este Registro?</string>
+
+    <string name="toast_empty_fields">Há Campos Vazios, Verifique Antes de Salvar!</string>
+
+    <string name="device_sucess_save">Dispositivo Atualizado com sucesso!</string>
+    <string name="device_sucess_update">Dispositivo Salvo com sucesso!</string>
+    <string name="device_sucess_delete">Dispositivo Excluido com sucesso!</string>
+
+    <string name="action_add_device">Adicionar Dispositivo</string>
+    <string name="action_edit_device">Editar Dispositivo</string>
+    <string name="add_device_dialog_DeviceName">Nome do Dispositivo</string>
+    <string name="add_device_dialog_DeviceIP">Endereço de Ip</string>
+    <string name="add_device_dialog_DeviceColor">Cor de Exibição</string>
+    <string name="add_device_dialog_DeviceApiKey">Chave da API</string>
+    <string name="add_device_dialog_DevicePixels">Número de Pixels</string>
+    <string name="add_device_dialog_DeviceBtnSave">Salvar</string>
+
+    <string name="action_select_color">Selecionar Cor</string>
+</resources>

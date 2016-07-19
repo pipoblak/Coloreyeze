@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/add_Device_Dialog_Background">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarAddDevice"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/action_add_device"
+            android:id="@+id/action_add_device"
+            android:layout_gravity="left"
+         />
+
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDeleteDevice"
+            android:layout_gravity="right"
+            android:background="@android:drawable/ic_menu_delete" />
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSave_DeviceAct"
+            android:background="@android:drawable/ic_menu_save"
+            android:layout_gravity="right"
+            android:textColor="@android:color/white" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/add_device_dialog_DeviceName"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/add_Device_Dialog_vertical_margin" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtNameDevice"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:maxLines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/add_device_dialog_DeviceIP"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/add_Device_Dialog_vertical_margin" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDeviceIp"
+                android:textAlignment="center"
+                android:maxLines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/add_device_dialog_DeviceApiKey"
+                android:id="@+id/textView4"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/add_Device_Dialog_vertical_margin" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtApiDevice"
+                android:textAlignment="center"
+                android:maxLines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/add_device_dialog_DeviceColor"
+                android:id="@+id/textView3"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/add_Device_Dialog_vertical_margin" />
+
+            <uz.shift.colorpicker.LineColorPicker
+                android:id="@+id/addDeviceColorPicker"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:orientation="horizontal"
+                app:colors="@array/rainbow"
+                app:selectedColorIndex="3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/add_device_dialog_DevicePixels"
+                android:id="@+id/textView5"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/add_Device_Dialog_vertical_margin" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/txtPixels"
+                android:maxLines="1"
+                android:textAlignment="center" />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
