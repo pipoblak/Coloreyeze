@@ -24,4 +24,10 @@ public class DBCore extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE Device;");
         onCreate(db);
     }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        this.close();
+        super.finalize();
+    }
 }
