@@ -25,19 +25,21 @@
             android:layout_gravity="left"
          />
 
-        <Button
+        <ImageButton
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:id="@+id/btnDeleteDevice"
             android:layout_gravity="right"
-            android:background="@android:drawable/ic_menu_delete" />
-        <Button
+            android:src="@android:drawable/ic_menu_delete"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
+        <ImageButton
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:id="@+id/btnSave_DeviceAct"
-            android:background="@android:drawable/ic_menu_save"
+            android:src="@android:drawable/ic_menu_save"
             android:layout_gravity="right"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
 
 
     </android.support.v7.widget.Toolbar>

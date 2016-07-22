@@ -14,6 +14,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -30,13 +32,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        ((Button) findViewById(R.id.btnAddDevice)).setOnClickListener(this);
+        ((ImageButton) findViewById(R.id.btnAddDevice)).setOnClickListener(this);
         GridView gridViewDevices = (GridView) findViewById(R.id.gridViewDevices);
         DB db = new DB(this);
-
+        ((ImageView) findViewById(R.id.logo)).setOnClickListener(this);
         List<Device> list = db.searchAllDevices();
         gridViewDevices.setAdapter(new DeviceAdapter(this, list));
-        animAlpha= AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
+
+
 
     }
 
@@ -45,12 +48,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.btnAddDevice :
 
-                v.startAnimation(animAlpha);
+
                 Intent intent = new Intent(this,AddDeviceActivity.class);
                 startActivity(intent);
 
                 break;
 
+            case R.id.logo:
+                final Animation animRotate;
+                animRotate= AnimationUtils.loadAnimation(this,R.anim.anim_rotate);
+                v.startAnimation(animRotate);
+                Log.v("as","asdasd");
+                break;
             default:
                 break;
 

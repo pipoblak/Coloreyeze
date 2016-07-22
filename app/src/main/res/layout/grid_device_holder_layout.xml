@@ -18,15 +18,16 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             />
-        <Button
+        <ImageButton
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:id="@+id/optionsButton"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="false"
             android:layout_above="@+id/deviceIp"
-            android:background="@mipmap/ic_settings"
-            android:layout_marginLeft="5dp" />
+            android:src="@drawable/ic_settings"
+            android:layout_marginLeft="5dp"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
 
     </LinearLayout>
 
@@ -87,26 +88,28 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             />
-        <Button
+        <ImageButton
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="false"
             android:layout_above="@+id/deviceIp"
             android:id="@+id/btnShowColor"
-            android:background="@mipmap/ic_colorpallet"
+            android:src="@mipmap/ic_colorpallet"
             android:layout_marginLeft="5dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
 
-        <Button
+        <ImageButton
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="false"
             android:layout_above="@+id/deviceIp"
             android:id="@+id/btnEffects"
-            android:background="@mipmap/ic_effects"
-            android:layout_marginLeft="5dp" />
+            android:src="@mipmap/ic_effects"
+            android:layout_marginLeft="5dp"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
 
         <View
             android:layout_width="0dp"

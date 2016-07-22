@@ -22,13 +22,6 @@
             android:layout_gravity="left"
             />
 
-        <Button
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnSaveColor"
-            android:background="@android:drawable/ic_menu_save"
-            android:layout_gravity="right"
-            android:textColor="@android:color/white" />
     </android.support.v7.widget.Toolbar>
 
     <RelativeLayout

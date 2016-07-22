@@ -13,6 +13,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +27,9 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
     LineColorPicker colorPicker;
     Device device= new Device() ;
     EditText txtname,txtip,txtapikey,txtid,txtpixels;
-    Button btndelete;
+    ImageButton btndelete;
     String name,ip,apikey;
-    int pixel;
+    String pixels;
     int color;
     Boolean edit = false;
     @Override
@@ -38,8 +39,8 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarAddDevice);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        ((Button) findViewById(R.id.btnSave_DeviceAct)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnDeleteDevice)).setOnClickListener(this);
+        ((ImageButton) findViewById(R.id.btnSave_DeviceAct)).setOnClickListener(this);
+        ((ImageButton) findViewById(R.id.btnDeleteDevice)).setOnClickListener(this);
         GridView gridViewDevices = (GridView) findViewById(R.id.gridViewDevices);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 colorPicker = (LineColorPicker) findViewById(R.id.addDeviceColorPicker);
@@ -56,7 +57,7 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
         txtip = (EditText)findViewById(R.id.txtDeviceIp);
         txtapikey = (EditText)findViewById(R.id.txtApiDevice);
         txtpixels = (EditText)findViewById(R.id.txtPixels);
-        btndelete=(Button) findViewById(R.id.btnDeleteDevice);
+        btndelete=(ImageButton) findViewById(R.id.btnDeleteDevice);
         btndelete.setVisibility(View.GONE);
 
 
@@ -91,8 +92,6 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
         final Intent intent = getSupportParentActivityIntent();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-       AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
-        v.startAnimation(buttonClick);
         switch (v.getId()){
 
             case R.id.btnSave_DeviceAct:
@@ -100,10 +99,9 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
                 ip = txtip.getText().toString();
                 apikey = txtapikey.getText().toString();
                 color = colorPicker.getColor();
-                pixel = Integer.parseInt(txtpixels.getText().toString());
+                pixels = txtpixels.getText().toString();
 
-
-                if(name.isEmpty() || ip.isEmpty() || apikey.isEmpty()){
+                if(name.isEmpty() || ip.isEmpty() || apikey.isEmpty() || pixels.isEmpty()){
                     Toast.makeText(this, getString(R.string.toast_empty_fields), Toast.LENGTH_SHORT).show();
                     break;
                 }
@@ -113,7 +111,7 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
                 device.setDeviceIP(ip);
                 device.setApiKey(apikey);
                 device.setDeviceColor(color+"");
-                device.setDevicePixels(pixel);
+                device.setDevicePixels(Integer.parseInt(pixels));
 
                 if (edit==true){
 

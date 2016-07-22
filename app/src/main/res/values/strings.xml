@@ -4,9 +4,9 @@
     <string name="confirmation_yes">Sim</string>
     <string name="confirmation_no">Não</string>
     <string name="confirmation_are_you_sure">Você Tem Certeza?</string>
-    <string name="confirmation_are_you_sure_delete">Você Tem Certeza Que Deseja Excluir Este Registro?</string>
+    <string name="confirmation_are_you_sure_delete">Você tem certeza que deseja prosseguir com esta exclusão?</string>
 
-    <string name="toast_empty_fields">Há Campos Vazios, Verifique Antes de Salvar!</string>
+    <string name="toast_empty_fields">Há campos vazios, verifique antes de salvar!</string>
 
     <string name="device_sucess_save">Dispositivo Atualizado com sucesso!</string>
     <string name="device_sucess_update">Dispositivo Salvo com sucesso!</string>

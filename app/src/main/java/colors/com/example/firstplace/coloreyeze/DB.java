@@ -68,6 +68,7 @@ public class DB {
             }while(cursor.moveToNext());
 
         }
+        cursor.close();
         return listDevices;
     }
 

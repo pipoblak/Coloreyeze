@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,7 +48,7 @@ public class DeviceAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, final View convertView, ViewGroup parent) {
         final int auxPosition = position;
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -64,7 +65,7 @@ public class DeviceAdapter extends BaseAdapter {
         txtip.setText(list.get(position).getDeviceIP());
         layoutTop.setBackgroundColor(Integer.parseInt(list.get(position).getDeviceColor()));
 
-        Button editarBt = (Button) layout.findViewById(R.id.optionsButton);
+        ImageButton editarBt = (ImageButton) layout.findViewById(R.id.optionsButton);
         editarBt.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -79,7 +80,7 @@ public class DeviceAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-        Button btnShowColorDialog = (Button) layout.findViewById(R.id.btnShowColor);
+        ImageButton btnShowColorDialog = (ImageButton) layout.findViewById(R.id.btnShowColor);
 
         btnShowColorDialog.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -93,9 +94,10 @@ public class DeviceAdapter extends BaseAdapter {
                 intent.putExtra("deviceColor", list.get(auxPosition).getDeviceColor());
                 intent.putExtra("devicePixels", list.get(auxPosition).getDevicePixels());
                 context.startActivity(intent);
+
             }
         });
-        Button btnEffects = (Button) layout.findViewById(R.id.btnEffects);
+        ImageButton btnEffects = (ImageButton) layout.findViewById(R.id.btnEffects);
         btnEffects.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {

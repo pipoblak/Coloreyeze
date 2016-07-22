@@ -14,20 +14,22 @@
         >
 
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@mipmap/ic_logo"
+            android:clickable="true"
             />
 
-        <Button
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/ic_add"
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/btn_add"
             android:id="@+id/btnAddDevice"
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
-            android:backgroundTint="#616161" />
+            style="@style/Widget.AppCompat.Light.ActionButton" />
     </android.support.v7.widget.Toolbar>
 
     <GridView
@@ -39,7 +41,8 @@
         android:numColumns="2"
         android:horizontalSpacing="10dp"
         android:layout_margin="5dp"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="10dp"
+        android:clickable="false" />
 
 
 

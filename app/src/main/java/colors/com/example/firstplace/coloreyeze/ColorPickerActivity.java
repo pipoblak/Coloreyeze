@@ -31,7 +31,7 @@ public class ColorPickerActivity extends AppCompatActivity implements OnColorCha
     private ColorPanelView			mNewColorPanelView;
     String id,ip,pixels;
     WebSocketCon mWebSocket;
-    private Button					btnSaveColor;
+
     Boolean conected = true;
     Boolean firstTime = true;
     long startTime = System.currentTimeMillis();
@@ -73,7 +73,7 @@ public class ColorPickerActivity extends AppCompatActivity implements OnColorCha
         mOldColorPanelView = (ColorPanelView) findViewById(R.id.colorpickerview__color_panel_old);
         mNewColorPanelView = (ColorPanelView) findViewById(R.id.colorpickerview__color_panel_new);
 
-        btnSaveColor = (Button) findViewById(R.id.btnSaveColor);
+
 
 
 
@@ -86,7 +86,7 @@ public class ColorPickerActivity extends AppCompatActivity implements OnColorCha
         mColorPickerView.setColor(initialColor, true);
         mOldColorPanelView.setColor(initialColor);
 
-        btnSaveColor.setOnClickListener(this);
+
 
 
     }
@@ -95,6 +95,10 @@ public class ColorPickerActivity extends AppCompatActivity implements OnColorCha
     public void onColorChanged(int newColor) {
         mNewColorPanelView.setColor(mColorPickerView.getColor());
         // LOCAL PARA COLOCAR MÉTODO QUE IRÁ ENVIAR AS CORES
+        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        edit.putInt("color_"+ id, mColorPickerView.getColor());
+        edit.commit();
+
         if(mWebSocket.getConected() == false && firstTime==false){
             conectWebSocket(ip);
        }
@@ -110,13 +114,7 @@ public class ColorPickerActivity extends AppCompatActivity implements OnColorCha
     public void onClick(View v) {
 
         switch(v.getId()) {
-            case R.id.btnSaveColor:
-                SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(this).edit();
-                edit.putInt("color_"+ id, mColorPickerView.getColor());
-                edit.commit();
 
-                finish();
-                break;
          }
 
     }
