@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,9 +58,6 @@ public class DeviceAdapter extends BaseAdapter {
         txtname = (TextView) layout.findViewById(R.id.deviceName);
         txtip = (TextView) layout.findViewById(R.id.deviceIp);
 
-        final Animation animAlpha;
-        animAlpha= AnimationUtils.loadAnimation(context,R.anim.anim_alpha);
-
 
         txtname.setText(list.get(position).getDeviceName());
         txtip.setText(list.get(position).getDeviceIP());
@@ -69,7 +67,7 @@ public class DeviceAdapter extends BaseAdapter {
         editarBt.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                v.startAnimation(animAlpha);
+
                 Intent intent = new Intent(context, AddDeviceActivity.class);
                 intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
                 intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());
@@ -85,7 +83,7 @@ public class DeviceAdapter extends BaseAdapter {
         btnShowColorDialog.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v){
-                v.startAnimation(animAlpha);
+               /* v.startAnimation(animAlpha);
                 Intent intent = new Intent(context, ColorPickerActivity.class);
                 intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
                 intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());
@@ -93,7 +91,18 @@ public class DeviceAdapter extends BaseAdapter {
                 intent.putExtra("deviceApikey", list.get(auxPosition).getApiKey());
                 intent.putExtra("deviceColor", list.get(auxPosition).getDeviceColor());
                 intent.putExtra("devicePixels", list.get(auxPosition).getDevicePixels());
-                context.startActivity(intent);
+                context.startActivity(intent); */
+                Bundle bundle=new Bundle();
+                bundle.putLong("deviceId", list.get(auxPosition).getDeviceId());
+                bundle.putString("deviceName", list.get(auxPosition).getDeviceName());
+                bundle.putString("deviceIP", list.get(auxPosition).getDeviceIP());
+                bundle.putString("deviceApikey", list.get(auxPosition).getApiKey());
+                bundle.putString("deviceColor", list.get(auxPosition).getDeviceColor());
+                bundle.putInt("devicePixels", list.get(auxPosition).getDevicePixels());
+
+                ColorPickerDialog dialog = new ColorPickerDialog(context,bundle);
+                dialog.show();
+
 
             }
         });
@@ -101,7 +110,7 @@ public class DeviceAdapter extends BaseAdapter {
         btnEffects.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                v.startAnimation(animAlpha);
+
                 Intent intent = new Intent(context, ColorPickerActivity.class);
                 intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
                 intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());

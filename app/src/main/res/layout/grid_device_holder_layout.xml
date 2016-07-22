@@ -95,7 +95,7 @@
             android:layout_alignParentStart="false"
             android:layout_above="@+id/deviceIp"
             android:id="@+id/btnShowColor"
-            android:src="@mipmap/ic_colorpallet"
+            android:src="@drawable/ic_colorpallet"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
             style="@style/Widget.AppCompat.Light.ActionButton" />
@@ -107,7 +107,7 @@
             android:layout_alignParentStart="false"
             android:layout_above="@+id/deviceIp"
             android:id="@+id/btnEffects"
-            android:src="@mipmap/ic_effects"
+            android:src="@drawable/ic_effects"
             android:layout_marginLeft="5dp"
             style="@style/Widget.AppCompat.Light.ActionButton" />
 
