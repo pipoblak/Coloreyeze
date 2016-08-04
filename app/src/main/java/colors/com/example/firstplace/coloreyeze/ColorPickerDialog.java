@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -98,10 +99,16 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
             conectWebSocket(ip);
        }
         if (startTime + 150 < System.currentTimeMillis()) {
-        mWebSocket.sendMessage("set_RGBs(" + Color.green(newColor) + "," + Color.red(newColor) + "," + Color.blue(newColor) + "," +  pixels +")");
-        firstTime=false;
+        //mWebSocket.sendMessage("set_RGBs(" + Color.green(newColor) + "," + Color.red(newColor) + "," + Color.blue(newColor) + "," +  pixels +")");
+
+
+            String hexColor = "#" + Integer.toHexString(Color.rgb(Color.red(newColor) , Color.green(newColor),Color.blue(newColor)));
+
+            mWebSocket.sendMessage(hexColor);
+            firstTime=false;
        // Log.v("a",mColorPickerView.getColor() + "  ALPHA:" + Color.alpha(newColor));
             startTime = System.currentTimeMillis();
+
         }
     }
 
