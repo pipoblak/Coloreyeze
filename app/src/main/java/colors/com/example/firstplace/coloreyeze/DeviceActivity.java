@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ import java.util.TimerTask;
  */
 public class DeviceActivity extends AppCompatActivity {
     TextView txtname,txtip,txtStatus;
+    FloatingActionButton floatingADD;
+    ListView listStrips;
     WebSocketCon webSocketCon;
     ProgressBar progressBar;
     private Timer timerAtual = new Timer();
@@ -44,6 +48,9 @@ public class DeviceActivity extends AppCompatActivity {
         txtip = (TextView) findViewById(R.id.txtDetailedIP);
         progressBar= (ProgressBar) findViewById(R.id.progressBar);
         txtStatus = (TextView) findViewById(R.id.txtStatus);
+        floatingADD = (FloatingActionButton) findViewById(R.id.floatingAdd) ;
+        listStrips = (ListView) findViewById(R.id.listViewStrips);
+
         ((ProgressBar)findViewById(R.id.progressBar))
                 .getIndeterminateDrawable()
                 .setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
@@ -72,7 +79,8 @@ public class DeviceActivity extends AppCompatActivity {
         else {
             txtStatus.setText(getString(R.string.state_connected));
             txtStatus.getBackground().setColorFilter(getResources().getColor(R.color.color_green),PorterDuff.Mode.SRC_ATOP);
-
+            listStrips.setVisibility(View.VISIBLE);
+            floatingADD.setVisibility(View.VISIBLE);
         }
         webSocketCon.close();
             progressBar.setVisibility(View.GONE);
