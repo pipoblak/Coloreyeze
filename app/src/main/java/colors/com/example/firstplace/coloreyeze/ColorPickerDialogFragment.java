@@ -1,14 +1,13 @@
 package colors.com.example.firstplace.coloreyeze;
 
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -16,43 +15,52 @@ import android.widget.LinearLayout;
 
 import com.github.danielnilsson9.colorpickerview.view.ColorPanelView;
 import com.github.danielnilsson9.colorpickerview.view.ColorPickerView;
-import com.github.danielnilsson9.colorpickerview.view.ColorPickerView.OnColorChangedListener;
 
-public class ColorPickerDialog extends Dialog implements OnColorChangedListener, View.OnClickListener {
+/**
+ * Created by FirstPlace on 15/08/2016.
+ */
+public class ColorPickerDialogFragment extends DialogFragment implements ColorPickerView.OnColorChangedListener, View.OnClickListener {
 
-    Context context;
     Bundle bundle;
-    private ColorPickerView			mColorPickerView;
-    private ColorPanelView			mOldColorPanelView;
+    private ColorPickerView mColorPickerView;
+    private ColorPanelView mOldColorPanelView;
     private ColorPanelView			mNewColorPanelView;
     String id,ip,pixels;
     WebSocketCon mWebSocket;
+
 
     Boolean conected = true;
     Boolean firstTime = true;
     long startTime = System.currentTimeMillis();
 
-    public ColorPickerDialog(Context cont, Bundle bund) {
-        super(cont);
-        context = cont;
-        bundle=bund;
+    public ColorPickerDialogFragment() {
+        bundle = getArguments();
+
     }
 
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onDestroyView() {
+        if (getDialog() != null && getRetainInstance()) {
+            getDialog().setDismissMessage(null);
+        }
+        super.onDestroyView();
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bundle = getArguments();
         id=bundle.getLong("deviceId")+"";
         ip= bundle.getString("deviceIP");
         pixels = bundle.getInt("devicePixels") + "";
-        getWindow().setFormat(PixelFormat.RGBA_8888);
-        conectWebSocket(ip);
-        setContentView(R.layout.activity_color_picker);
-        setTitle(context.getString(R.string.action_select_color));
-        ((Toolbar) findViewById(R.id.toolbarSelectColor)).setVisibility(View.GONE);
-        init();
-        mNewColorPanelView.setOnClickListener(this);
 
+        getDialog().getWindow().setFormat(PixelFormat.RGBA_8888);
+        conectWebSocket(ip);
+        getDialog().setContentView(R.layout.activity_color_picker);
+        getDialog().setTitle(getActivity().getString(R.string.action_select_color));
+        ((Toolbar) getActivity().findViewById(R.id.toolbarSelectColor)).setVisibility(View.GONE);
+        init();
 
 
     }
@@ -61,14 +69,14 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
         mWebSocket = new WebSocketCon(ip);
     }
     private void init() {
+        Log.v("Test","ASDA");
 
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         int initialColor = prefs.getInt("color_"+ id, 0xFF000000);
 
-        mColorPickerView = (ColorPickerView) findViewById(R.id.colorpickerview__color_picker_view);
-        mOldColorPanelView = (ColorPanelView) findViewById(R.id.colorpickerview__color_panel_old);
-        mNewColorPanelView = (ColorPanelView) findViewById(R.id.colorpickerview__color_panel_new);
+        mColorPickerView = (ColorPickerView) getActivity().findViewById(R.id.colorpickerview__color_picker_view);
+        mOldColorPanelView = (ColorPanelView) getActivity().findViewById(R.id.colorpickerview__color_panel_old);
+        mNewColorPanelView = (ColorPanelView) getActivity().findViewById(R.id.colorpickerview__color_panel_new);
 
 
 
@@ -92,22 +100,22 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
     public void onColorChanged(int newColor) {
         mNewColorPanelView.setColor(mColorPickerView.getColor());
         // LOCAL PARA COLOCAR MÉTODO QUE IRÁ ENVIAR AS CORES
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
         edit.putInt("color_"+ id, mColorPickerView.getColor());
         edit.commit();
 
         if(mWebSocket.getConected() == false && firstTime==false){
             conectWebSocket(ip);
-       }
+        }
         if (startTime + 150 < System.currentTimeMillis()) {
-        //mWebSocket.sendMessage("set_RGBs(" + Color.green(newColor) + "," + Color.red(newColor) + "," + Color.blue(newColor) + "," +  pixels +")");
+            //mWebSocket.sendMessage("set_RGBs(" + Color.green(newColor) + "," + Color.red(newColor) + "," + Color.blue(newColor) + "," +  pixels +")");
 
 
             String hexColor = "#" + Integer.toHexString(Color.rgb(Color.red(newColor) , Color.green(newColor),Color.blue(newColor)));
 
             mWebSocket.sendMessage(hexColor);
             firstTime=false;
-       // Log.v("a",mColorPickerView.getColor() + "  ALPHA:" + Color.alpha(newColor));
+            // Log.v("a",mColorPickerView.getColor() + "  ALPHA:" + Color.alpha(newColor));
             startTime = System.currentTimeMillis();
 
         }
@@ -117,11 +125,8 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
     public void onClick(View v) {
 
         switch(v.getId()) {
-            case R.id.colorpickerview__color_panel_new:
-              this.cancel();
-                break;
 
-         }
+        }
 
     }
 

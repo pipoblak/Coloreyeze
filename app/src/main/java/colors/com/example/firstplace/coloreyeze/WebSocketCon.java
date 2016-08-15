@@ -99,6 +99,10 @@ public class WebSocketCon {
 
     }
 
+public void close(){
+    try{    mWebSocketClient.close();}catch(Exception e){}
 
+
+}
 
 }

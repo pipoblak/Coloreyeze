@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 final Animation animRotate;
                 animRotate= AnimationUtils.loadAnimation(this,R.anim.anim_rotate);
                 v.startAnimation(animRotate);
-                Log.v("as","asdasd");
+
                 break;
             default:
                 break;

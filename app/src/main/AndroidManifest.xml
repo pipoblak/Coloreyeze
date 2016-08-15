@@ -30,6 +30,13 @@
             android:parentActivityName=".MainActivity"
             >
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:name=".DeviceActivity"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,11 @@
 package colors.com.example.firstplace.coloreyeze;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -83,16 +88,8 @@ public class DeviceAdapter extends BaseAdapter {
         btnShowColorDialog.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v){
-               /* v.startAnimation(animAlpha);
-                Intent intent = new Intent(context, ColorPickerActivity.class);
-                intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
-                intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());
-                intent.putExtra("deviceIP", list.get(auxPosition).getDeviceIP());
-                intent.putExtra("deviceApikey", list.get(auxPosition).getApiKey());
-                intent.putExtra("deviceColor", list.get(auxPosition).getDeviceColor());
-                intent.putExtra("devicePixels", list.get(auxPosition).getDevicePixels());
-                context.startActivity(intent); */
                 Bundle bundle=new Bundle();
+
                 bundle.putLong("deviceId", list.get(auxPosition).getDeviceId());
                 bundle.putString("deviceName", list.get(auxPosition).getDeviceName());
                 bundle.putString("deviceIP", list.get(auxPosition).getDeviceIP());
@@ -102,6 +99,7 @@ public class DeviceAdapter extends BaseAdapter {
 
                 ColorPickerDialog dialog = new ColorPickerDialog(context,bundle);
                 dialog.show();
+
 
 
             }
@@ -134,7 +132,7 @@ public class DeviceAdapter extends BaseAdapter {
         txtname.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(context, ColorPickerActivity.class);
+                Intent intent = new Intent(context, DeviceActivity.class);
                 intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
                 intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());
                 intent.putExtra("deviceIP", list.get(auxPosition).getDeviceIP());
