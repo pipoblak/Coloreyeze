@@ -8,16 +8,9 @@ public class Device {
     private String deviceIP;
     private long deviceId;
     private String deviceColor;
-    private String apiKey;
-    private int devicePixels;
 
-    public int getDevicePixels() {
-        return devicePixels;
-    }
 
-    public void setDevicePixels(int devicePixels) {
-        this.devicePixels = devicePixels;
-    }
+
     public String getDeviceName() {
         return deviceName;
     }
@@ -50,13 +43,6 @@ public class Device {
         this.deviceColor = deviceColor;
     }
 
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    public void setApiKey(String apiKey) {
-        this.apiKey = apiKey;
-    }
 
 
 

@@ -26,10 +26,9 @@ import uz.shift.colorpicker.OnColorChangedListener;
 public class AddDeviceActivity extends AppCompatActivity implements View.OnClickListener{
     LineColorPicker colorPicker;
     Device device= new Device() ;
-    EditText txtname,txtip,txtapikey,txtid,txtpixels;
+    EditText txtname,txtip;
     ImageButton btndelete;
-    String name,ip,apikey;
-    String pixels;
+    String name,ip;
     int color;
     Boolean edit = false;
     @Override
@@ -55,8 +54,6 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
         //Initializing EditTexts
         txtname = (EditText) findViewById(R.id.txtNameDevice);
         txtip = (EditText)findViewById(R.id.txtDeviceIp);
-        txtapikey = (EditText)findViewById(R.id.txtApiDevice);
-        txtpixels = (EditText)findViewById(R.id.txtPixels);
         btndelete=(ImageButton) findViewById(R.id.btnDeleteDevice);
         btndelete.setVisibility(View.GONE);
 
@@ -70,13 +67,9 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
                 device.setDeviceName(bundle.getString("deviceName"));
                 device.setDeviceIP(bundle.getString("deviceIP"));
                 device.setDeviceColor(bundle.getString("deviceColor"));
-                device.setApiKey(bundle.getString("deviceApikey"));
-                device.setDevicePixels(bundle.getInt("devicePixels"));
                 edit=true;
                 txtname.setText(device.getDeviceName());
                 txtip.setText(device.getDeviceIP());
-                txtapikey.setText(device.getApiKey());
-                txtpixels.setText(device.getDevicePixels() + "");
                 colorPicker.setSelectedColor(Integer.parseInt(device.getDeviceColor()));
                 btndelete.setVisibility(View.VISIBLE);
             }
@@ -97,11 +90,10 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
             case R.id.btnSave_DeviceAct:
                 name = txtname.getText().toString();
                 ip = txtip.getText().toString();
-                apikey = txtapikey.getText().toString();
                 color = colorPicker.getColor();
-                pixels = txtpixels.getText().toString();
 
-                if(name.isEmpty() || ip.isEmpty() || apikey.isEmpty() || pixels.isEmpty()){
+
+                if(name.isEmpty() || ip.isEmpty()){
                     Toast.makeText(this, getString(R.string.toast_empty_fields), Toast.LENGTH_SHORT).show();
                     break;
                 }
@@ -109,9 +101,8 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
 
                 device.setDeviceName(name);
                 device.setDeviceIP(ip);
-                device.setApiKey(apikey);
                 device.setDeviceColor(color+"");
-                device.setDevicePixels(Integer.parseInt(pixels));
+
 
                 if (edit==true){
 

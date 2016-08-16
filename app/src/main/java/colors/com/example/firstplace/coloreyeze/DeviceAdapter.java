@@ -77,9 +77,7 @@ public class DeviceAdapter extends BaseAdapter {
                 intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
                 intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());
                 intent.putExtra("deviceIP", list.get(auxPosition).getDeviceIP());
-                intent.putExtra("deviceApikey", list.get(auxPosition).getApiKey());
                 intent.putExtra("deviceColor", list.get(auxPosition).getDeviceColor());
-                intent.putExtra("devicePixels", list.get(auxPosition).getDevicePixels());
                 context.startActivity(intent);
             }
         });
@@ -93,9 +91,7 @@ public class DeviceAdapter extends BaseAdapter {
                 bundle.putLong("deviceId", list.get(auxPosition).getDeviceId());
                 bundle.putString("deviceName", list.get(auxPosition).getDeviceName());
                 bundle.putString("deviceIP", list.get(auxPosition).getDeviceIP());
-                bundle.putString("deviceApikey", list.get(auxPosition).getApiKey());
                 bundle.putString("deviceColor", list.get(auxPosition).getDeviceColor());
-                bundle.putInt("devicePixels", list.get(auxPosition).getDevicePixels());
 
                 ColorPickerDialog dialog = new ColorPickerDialog(context,bundle);
                 dialog.show();
@@ -113,9 +109,7 @@ public class DeviceAdapter extends BaseAdapter {
                 intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
                 intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());
                 intent.putExtra("deviceIP", list.get(auxPosition).getDeviceIP());
-                intent.putExtra("deviceApikey", list.get(auxPosition).getApiKey());
                 intent.putExtra("deviceColor", list.get(auxPosition).getDeviceColor());
-                intent.putExtra("devicePixels", list.get(auxPosition).getDevicePixels());
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Selecione um Efeito")
                         .setItems(R.array.effects, new DialogInterface.OnClickListener() {
@@ -136,9 +130,7 @@ public class DeviceAdapter extends BaseAdapter {
                 intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
                 intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());
                 intent.putExtra("deviceIP", list.get(auxPosition).getDeviceIP());
-                intent.putExtra("deviceApikey", list.get(auxPosition).getApiKey());
                 intent.putExtra("deviceColor", list.get(auxPosition).getDeviceColor());
-                intent.putExtra("devicePixels", list.get(auxPosition).getDevicePixels());
                 context.startActivity(intent);
             }
         });
