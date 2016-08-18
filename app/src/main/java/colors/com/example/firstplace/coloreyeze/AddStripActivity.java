@@ -32,25 +32,28 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
     Boolean edit = false;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_device_dialog);
+        setContentView(R.layout.add_strip);
+        Log.v("TESTE","TEST");
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarAddDevice);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         ((ImageButton) findViewById(R.id.btnSave_DeviceAct)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.btnDeleteDevice)).setOnClickListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        colorPicker = (LineColorPicker) findViewById(R.id.addDeviceColorPicker);
+        colorPicker = (LineColorPicker) findViewById(R.id.addStripColorPicker);
         // set on change listener
         colorPicker.setOnColorChangedListener(new OnColorChangedListener() {
             @Override
             public void onColorChanged(int c) {
                 Log.d("Cor Selecionada", "Selected color " + Integer.toHexString(c));
+                color=c;
             }
         });
-
+        color = colorPicker.getColor();
         //Initializing EditTexts
         txtname = (EditText) findViewById(R.id.txtNameStrip);
         txtid = (EditText)findViewById(R.id.txtStripID);
+        txtpixels = (EditText)findViewById(R.id.txtPixels);
         btndelete=(ImageButton) findViewById(R.id.btnDeleteDevice);
         btndelete.setVisibility(View.GONE);
 

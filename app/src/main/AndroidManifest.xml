@@ -37,6 +37,13 @@
             android:parentActivityName=".MainActivity"
             >
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:name=".AddStripActivity"
+            android:parentActivityName=".DeviceActivity"
+            >
+        </activity>
     </application>
 
 </manifest>
