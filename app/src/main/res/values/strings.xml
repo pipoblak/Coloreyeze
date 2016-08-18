@@ -8,9 +8,9 @@
     <string name="action_save">Salvar</string>
     <string name="toast_empty_fields">Há campos vazios, verifique antes de salvar!</string>
 
-    <string name="device_sucess_save">Dispositivo Atualizado com sucesso!</string>
-    <string name="device_sucess_update">Dispositivo Salvo com sucesso!</string>
-    <string name="device_sucess_delete">Dispositivo Excluido com sucesso!</string>
+    <string name="sucess_save">Atualizado com sucesso!</string>
+    <string name="sucess_update">Salvo com sucesso!</string>
+    <string name="sucess_delete">Excluido com sucesso!</string>
 
     <string name="action_add_device">Adicionar Dispositivo</string>
     <string name="action_edit_device">Editar Dispositivo</string>

@@ -107,12 +107,12 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
                 if (edit==true){
 
                     db.update(device);
-                    Toast.makeText(this, getString(R.string.device_sucess_save) , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.sucess_save) , Toast.LENGTH_SHORT).show();
                     }
 
                 else{
                     db.insert(device);
-                    Toast.makeText(this, getString(R.string.device_sucess_update), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.sucess_update), Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -130,7 +130,7 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 db.delete(device);
-                                Toast.makeText(activity,getString(R.string.device_sucess_delete), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(activity,getString(R.string.sucess_delete), Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
 
                             }

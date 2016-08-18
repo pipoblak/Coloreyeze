@@ -137,7 +137,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent;
         switch (v.getId()){
             case R.id.floatingAdd :
-                intent = new Intent(this,AddDeviceActivity.class);
+                intent = new Intent(this,AddStripActivitygit .class);
                 startActivity(intent);
                 break;
             case R.id.btnRefresh :
