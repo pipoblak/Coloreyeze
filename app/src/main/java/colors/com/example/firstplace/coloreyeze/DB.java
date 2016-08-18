@@ -104,12 +104,13 @@ public class DB {
                 strip.setName(cursor.getString(1));
                 strip.setColor(cursor.getString(2));
                 strip.setPixels(cursor.getInt(3));
-                listDevices.add(device);
+                strip.setDeviceID(cursor.getInt(4));
+                listStrips.add(strip);
             }while(cursor.moveToNext());
 
         }
         cursor.close();
-        return listDevices;
+        return listStrips;
     }
 
 }

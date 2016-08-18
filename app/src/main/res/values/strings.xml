@@ -24,6 +24,7 @@
 
     <string name="action_select_color">Selecionar Cor</string>
     <string name="action_select_color_switchStrip">Fita</string>
+    <string name="label_strips">Fitas</string>
 
     <string name="no_possible_connection_device"> Não Foi Possivel Manter uma Conexão com o Despositivo.</string>
     <string name="state_connecting">Conectando</string>

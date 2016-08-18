@@ -107,11 +107,13 @@ public class AddDeviceActivity extends AppCompatActivity implements View.OnClick
                 if (edit==true){
 
                     db.update(device);
-                    Toast.makeText(this, getString(R.string.device_sucess_update), Toast.LENGTH_SHORT).show();}
+                    Toast.makeText(this, getString(R.string.device_sucess_save) , Toast.LENGTH_SHORT).show();
+                    }
 
                 else{
                     db.insert(device);
-                    Toast.makeText(this, getString(R.string.device_sucess_save) , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.device_sucess_update), Toast.LENGTH_SHORT).show();
+
                 }
 
                 startActivity(intent);

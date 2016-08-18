@@ -11,29 +11,36 @@ import android.support.v7.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import android.os.Handler;
+
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 /**
  * Created by FirstPlace on 15/08/2016.
  */
-public class DeviceActivity extends AppCompatActivity {
+public class DeviceActivity extends AppCompatActivity implements View.OnClickListener {
     TextView txtname,txtip,txtStatus;
     FloatingActionButton floatingADD;
     ListView listStrips;
     WebSocketCon webSocketCon;
     ProgressBar progressBar;
+    LinearLayout stripTitle;
     private Timer timerAtual = new Timer();
     private TimerTask task;
     private final Handler handler = new Handler();
+    Device device;
     Context c;
+    List<Strip> stripList;
     int contTimer=1;
 
     @Override
@@ -50,6 +57,8 @@ public class DeviceActivity extends AppCompatActivity {
         txtStatus = (TextView) findViewById(R.id.txtStatus);
         floatingADD = (FloatingActionButton) findViewById(R.id.floatingAdd) ;
         listStrips = (ListView) findViewById(R.id.listViewStrips);
+        floatingADD.setOnClickListener(this);
+        stripTitle = (LinearLayout) findViewById(R.id.stripTitle);
 
         ((ProgressBar)findViewById(R.id.progressBar))
                 .getIndeterminateDrawable()
@@ -59,9 +68,15 @@ public class DeviceActivity extends AppCompatActivity {
         if(intent != null){
             Bundle bundle = intent.getExtras();
             if(bundle != null){
-                txtname.setText(bundle.getString("deviceName"));
-                txtip.setText(getString(R.string.add_device_dialog_DeviceIP) + " : " + bundle.getString("deviceIP"));
-                webSocketCon = new WebSocketCon(bundle.getString("deviceIP"));
+                device = new Device();
+                device.setDeviceIP(bundle.getString("deviceIP"));
+                device.setDeviceId(bundle.getLong("deviceId"));
+                device.setDeviceColor(bundle.getString("deviceColor"));
+                device.setDeviceName(bundle.getString("deviceName"));
+                txtname.setText(device.getDeviceName());
+                txtip.setText(getString(R.string.add_device_dialog_DeviceIP) + " : " + device.getDeviceIP());
+
+                webSocketCon = new WebSocketCon(device.getDeviceIP());
 
                 ativaTimerTryConnection();
                 c = this;
@@ -80,6 +95,7 @@ public class DeviceActivity extends AppCompatActivity {
             txtStatus.setText(getString(R.string.state_connected));
             txtStatus.getBackground().setColorFilter(getResources().getColor(R.color.color_green),PorterDuff.Mode.SRC_ATOP);
             listStrips.setVisibility(View.VISIBLE);
+            stripTitle.setVisibility(View.VISIBLE);
             floatingADD.setVisibility(View.VISIBLE);
         }
         webSocketCon.close();
@@ -108,4 +124,22 @@ public class DeviceActivity extends AppCompatActivity {
         timerAtual.schedule(task, 300, 300);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.floatingAdd :
+                Intent intent = new Intent(this,AddDeviceActivity.class);
+                startActivity(intent);
+
+                break;
+        }
+    }
+
+    public void loadStrips(int deviceId){
+        DB db = new DB(this);
+        stripList = db.searchAllStrips(deviceId);
+        StripAdapter stripAdapter = new StripAdapter(stripList,this);
+        listStrips.setAdapter(stripAdapter);
+
+    }
 }
