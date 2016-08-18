@@ -94,7 +94,7 @@ public class DB {
     public List<Strip> searchAllStrips(int deviceID){
         List <Strip> listStrips = new ArrayList<Strip>();
         String[] columns = {"_id","name","color","pixels","deviceID"};
-        Cursor cursor = db.query("Strip",columns,"where deviceID=" + deviceID,null,null,null,null);
+        Cursor cursor = db.query("Strip",columns,"deviceID=" + deviceID,null,null,null,null);
         if(cursor.getCount()>0){
             cursor.moveToFirst();
             do{

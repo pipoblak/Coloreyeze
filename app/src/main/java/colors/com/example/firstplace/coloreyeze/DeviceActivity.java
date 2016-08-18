@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -35,6 +36,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
     WebSocketCon webSocketCon;
     ProgressBar progressBar;
     LinearLayout stripTitle;
+    ImageButton btnRefresh;
     private Timer timerAtual = new Timer();
     private TimerTask task;
     private final Handler handler = new Handler();
@@ -57,8 +59,11 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
         txtStatus = (TextView) findViewById(R.id.txtStatus);
         floatingADD = (FloatingActionButton) findViewById(R.id.floatingAdd) ;
         listStrips = (ListView) findViewById(R.id.listViewStrips);
-        floatingADD.setOnClickListener(this);
         stripTitle = (LinearLayout) findViewById(R.id.stripTitle);
+        btnRefresh = (ImageButton) findViewById(R.id.btnRefresh);
+
+        floatingADD.setOnClickListener(this);
+        btnRefresh.setOnClickListener(this);
 
         ((ProgressBar)findViewById(R.id.progressBar))
                 .getIndeterminateDrawable()
@@ -90,13 +95,16 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(c, getString(R.string.no_possible_connection_device), Toast.LENGTH_SHORT).show();
             txtStatus.setText(getString(R.string.state_disconnect));
             txtStatus.getBackground().setColorFilter(getResources().getColor(R.color.color_red),PorterDuff.Mode.SRC_ATOP);
+            btnRefresh.setVisibility(View.VISIBLE);
         }
         else {
             txtStatus.setText(getString(R.string.state_connected));
             txtStatus.getBackground().setColorFilter(getResources().getColor(R.color.color_green),PorterDuff.Mode.SRC_ATOP);
+            loadStrips(Integer.parseInt(device.getDeviceId() + ""));
             listStrips.setVisibility(View.VISIBLE);
             stripTitle.setVisibility(View.VISIBLE);
             floatingADD.setVisibility(View.VISIBLE);
+            btnRefresh.setVisibility(View.VISIBLE);
         }
         webSocketCon.close();
             progressBar.setVisibility(View.GONE);
@@ -126,12 +134,18 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.floatingAdd :
-                Intent intent = new Intent(this,AddDeviceActivity.class);
+                intent = new Intent(this,AddDeviceActivity.class);
                 startActivity(intent);
-
                 break;
+            case R.id.btnRefresh :
+                intent = getIntent();
+                finish();
+                startActivity(intent);
+                break;
+
         }
     }
 

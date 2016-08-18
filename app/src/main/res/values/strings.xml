@@ -5,7 +5,7 @@
     <string name="confirmation_no">Não</string>
     <string name="confirmation_are_you_sure">Você Tem Certeza?</string>
     <string name="confirmation_are_you_sure_delete">Você tem certeza que deseja prosseguir com esta exclusão?</string>
-
+    <string name="action_save">Salvar</string>
     <string name="toast_empty_fields">Há campos vazios, verifique antes de salvar!</string>
 
     <string name="device_sucess_save">Dispositivo Atualizado com sucesso!</string>
@@ -30,5 +30,13 @@
     <string name="state_connecting">Conectando</string>
     <string name="state_connected">Conectado</string>
     <string name="state_disconnect">Desconectado</string>
+
+    <string name="action_add_strip">Adicionar Fita</string>
+    <string name="action_edit_strip">Editar Fita</string>
+    <string name="add_strip_dialog_StripName">Nome da Fita</string>
+    <string name="add_strip_dialog_StripColor">Cor de Exibição</string>
+    <string name="add_strip_dialog_StripPixels">Número de Pixels</string>
+    <string name="add_strip_dialog_StripId">ID</string>
+
 
 </resources>
