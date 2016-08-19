@@ -25,7 +25,9 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
     private ColorPickerView			mColorPickerView;
     private ColorPanelView			mOldColorPanelView;
     private ColorPanelView			mNewColorPanelView;
-    String id,ip,pixels;
+    String id,ip,stripid,sharedIsA,idSet;
+
+    Boolean isDevice=false;
     WebSocketCon mWebSocket;
 
     Boolean conected = true;
@@ -42,9 +44,20 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        id=bundle.getLong("deviceId")+"";
-        ip= bundle.getString("deviceIP");
-        pixels = bundle.getInt("devicePixels") + "";
+        if(bundle.getString("deviceName")!= null){
+            id = bundle.getLong("deviceId") + "";
+            ip = bundle.getString("deviceIP");
+            stripid="0";
+            isDevice=true;
+        }
+        else{
+            isDevice=false;
+            stripid=bundle.getString("deviceIP");
+            ip= bundle.getString("deviceIP");
+
+
+        }
+
         getWindow().setFormat(PixelFormat.RGBA_8888);
         conectWebSocket(ip);
         setContentView(R.layout.activity_color_picker);
@@ -64,7 +77,17 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
 
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        int initialColor = prefs.getInt("color_"+ id, 0xFF000000);
+
+        if (isDevice){
+            sharedIsA= "color_Device";
+            idSet=stripid;
+        }
+        else{
+            sharedIsA = "color_Strip";
+            idSet =stripid;
+        }
+
+        int initialColor = prefs.getInt( sharedIsA + idSet, 0xFF000000);
 
         mColorPickerView = (ColorPickerView) findViewById(R.id.colorpickerview__color_picker_view);
         mOldColorPanelView = (ColorPanelView) findViewById(R.id.colorpickerview__color_panel_old);
@@ -93,21 +116,27 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
         mNewColorPanelView.setColor(mColorPickerView.getColor());
         // LOCAL PARA COLOCAR MÉTODO QUE IRÁ ENVIAR AS CORES
         SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        edit.putInt("color_"+ id, mColorPickerView.getColor());
+
+        if (isDevice){
+            sharedIsA= "color_Device";
+            idSet=stripid;
+        }
+        else{
+            sharedIsA = "color_Strip";
+            idSet =stripid;
+        }
+
+        edit.putInt(sharedIsA + idSet, mColorPickerView.getColor());
         edit.commit();
 
         if(mWebSocket.getConected() == false && firstTime==false){
             conectWebSocket(ip);
        }
-        if (startTime + 150 < System.currentTimeMillis()) {
-        //mWebSocket.sendMessage("set_RGBs(" + Color.green(newColor) + "," + Color.red(newColor) + "," + Color.blue(newColor) + "," +  pixels +")");
+        if (startTime + 300 < System.currentTimeMillis()) {
+           String strColor = "#R" + Color.red(newColor) + "G" + Color.green(newColor) + "B"+Color.blue(newColor)+ "S" + idSet;
 
-
-            String hexColor = "#" + Integer.toHexString(Color.rgb(Color.red(newColor) , Color.green(newColor),Color.blue(newColor)));
-
-            mWebSocket.sendMessage(hexColor);
+            mWebSocket.sendMessage(strColor);
             firstTime=false;
-       // Log.v("a",mColorPickerView.getColor() + "  ALPHA:" + Color.alpha(newColor));
             startTime = System.currentTimeMillis();
 
         }

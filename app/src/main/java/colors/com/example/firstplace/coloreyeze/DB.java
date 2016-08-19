@@ -66,7 +66,7 @@ public class DB {
         db.delete("Device","_id= ?",new String[]{"" + device.getDeviceId()});
     }
     public void deleteStrip(Strip strip){
-        db.delete("Strip","_id= ?",new String[]{"" + strip.getId()});
+        db.delete("Strip","_id= ? and deviceID=?",new String[]{"" + strip.getId(),"" + strip.getDeviceID()});
     }
 
     public List<Device> searchAllDevices(){

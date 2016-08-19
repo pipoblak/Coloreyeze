@@ -3,7 +3,8 @@
     android:orientation="horizontal" android:layout_width="fill_parent"
     android:layout_height="72dp"
     android:background="?attr/colorPrimary"
-    android:minHeight="72dp">
+    android:minHeight="72dp"
+    android:id="@+id/LayoutHolderStrip">
 
     <LinearLayout
         android:layout_width="40dp"
@@ -43,18 +44,48 @@
             android:layout_gravity="center" />
 
     </LinearLayout>
+
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         />
-    <ImageButton
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:id="@+id/imageButton"
-        android:layout_gravity="center_vertical|right"
-        android:layout_marginRight="16dp"
-        android:src="@drawable/ic_infoicon"
-        style="@style/Widget.AppCompat.Light.ActionButton"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/btnsLayout"
+        android:layout_weight="0"
+        android:paddingLeft="5dp">
+
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/btnShowColor"
+            android:src="@drawable/ic_colorpallet"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
+
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/btnEffects"
+            android:src="@drawable/ic_effects"
+            android:layout_marginLeft="5dp"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:layout_gravity="center" />
+
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/btnInfo"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_infoicon"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:layout_marginLeft="5dp" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package colors.com.example.firstplace.coloreyeze;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -28,9 +30,12 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
     EditText txtname,txtpixels,txtid;
     ImageButton btndelete;
     int deviceId;
+    Context context;
+
 
     int color;
     Boolean edit = false;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_strip);
@@ -39,7 +44,7 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         ((ImageButton) findViewById(R.id.btnSave_DeviceAct)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.btnDeleteDevice)).setOnClickListener(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        context=this;
         colorPicker = (LineColorPicker) findViewById(R.id.addStripColorPicker);
         // set on change listener
         colorPicker.setOnColorChangedListener(new OnColorChangedListener() {
@@ -63,22 +68,23 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
             Bundle bundle = intent.getExtras();
             if(bundle != null){
                 if(bundle.getString("stripName")!= null){
-                ((TextView) this.findViewById(R.id.action_add_device)).setText(getString(R.string.action_edit_strip));
+                ((TextView) findViewById(R.id.action_add_device)).setText(getString(R.string.action_edit_strip));
 
-                strip.setId(bundle.getInt("stripId"));
-                strip.setName(bundle.getString("stripName"));
-                strip.setPixels(bundle.getInt("stripPixels"));
-                strip.setColor(bundle.getString("stripColor"));
-                strip.setDeviceID(bundle.getInt("deviceID"));
-
-                edit=true;
-                txtname.setText(strip.getName());
-                txtid.setText(strip.getId());
-                colorPicker.setSelectedColor(Integer.parseInt(strip.getColor()));
-                txtpixels.setText(strip.getPixels());
-                btndelete.setVisibility(View.VISIBLE);}
-                else{
+                    strip.setId(bundle.getInt("stripId"));
+                    strip.setName(bundle.getString("stripName"));
+                    strip.setPixels(bundle.getInt("stripPixels"));
+                    strip.setColor(bundle.getString("stripColor"));
+                    strip.setDeviceID(bundle.getInt("deviceID"));
+                    Log.v("String", strip.getId() + "");
+                    edit = true;
+                    txtname.setText(strip.getName());
+                    txtid.setText("" + strip.getId());
+                    colorPicker.setSelectedColor(Integer.parseInt(strip.getColor()));
+                    txtpixels.setText("" + strip.getPixels());
+                    btndelete.setVisibility(View.VISIBLE);
+                } else {
                     deviceId = Integer.parseInt(bundle.getLong("deviceID") + "");
+
 
                 }
 
@@ -94,6 +100,8 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
         final Activity activity = this;
         final Intent intent = getSupportParentActivityIntent();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
 
         switch (v.getId()){
 
@@ -129,14 +137,12 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
                 }
 
                 else{
-                    Log.v("a",""+strip.getDeviceID());
+
                     db.insertStrip(strip);
                     Toast.makeText(this, getString(R.string.sucess_update), Toast.LENGTH_SHORT).show();
 
                 }
-
-                startActivity(intent);
-
+                finish();
                 break;
 
             case R.id.btnDeleteDevice:
@@ -148,9 +154,10 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
                         {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                DB db = new DB(context);
                                 db.deleteStrip(strip);
                                 Toast.makeText(activity,getString(R.string.sucess_delete), Toast.LENGTH_SHORT).show();
-                                startActivity(intent);
+                                finish();
 
                             }
 

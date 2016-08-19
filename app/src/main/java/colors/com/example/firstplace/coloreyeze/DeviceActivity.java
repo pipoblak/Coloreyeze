@@ -61,14 +61,6 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
         listStrips = (ListView) findViewById(R.id.listViewStrips);
         stripTitle = (LinearLayout) findViewById(R.id.stripTitle);
         btnRefresh = (ImageButton) findViewById(R.id.btnRefresh);
-
-        floatingADD.setOnClickListener(this);
-        btnRefresh.setOnClickListener(this);
-
-        ((ProgressBar)findViewById(R.id.progressBar))
-                .getIndeterminateDrawable()
-                .setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-
         Intent intent = getIntent();
         if(intent != null){
             Bundle bundle = intent.getExtras();
@@ -82,16 +74,44 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
                 txtname.setText(device.getDeviceName());
                 txtip.setText(getString(R.string.add_device_dialog_DeviceIP) + " : " + device.getDeviceIP());
 
-                webSocketCon = new WebSocketCon(device.getDeviceIP());
 
-                ativaTimerTryConnection();
                 c = this;
 
             }
         }
+        floatingADD.setOnClickListener(this);
+        btnRefresh.setOnClickListener(this);
+
+        ((ProgressBar)findViewById(R.id.progressBar))
+                .getIndeterminateDrawable()
+                .setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+
+
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        device.setDeviceIP(bundle.getString("deviceIP"));
+        contTimer=1;
+        webSocketCon = new WebSocketCon(device.getDeviceIP());
+        ativaTimerTryConnection();
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent intent;
+        intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
     public void tryConnection(){
         if (!webSocketCon.conected) {
             Toast.makeText(c, getString(R.string.no_possible_connection_device), Toast.LENGTH_SHORT).show();
@@ -111,6 +131,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
         webSocketCon.close();
             progressBar.setVisibility(View.GONE);
     }
+
     private void ativaTimerTryConnection(){
         task = new TimerTask() {
             public void run() {
@@ -141,6 +162,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.floatingAdd :
                 intent = new Intent(this,AddStripActivity .class);
                 intent.putExtra("deviceID",device.getDeviceId());
+                intent.putExtra("deviceIP",device.getDeviceIP());
                 startActivity(intent);
                 break;
             case R.id.btnRefresh :
@@ -155,7 +177,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
     public void loadStrips(int deviceId){
         DB db = new DB(this);
         stripList = db.searchAllStrips(deviceId);
-        StripAdapter stripAdapter = new StripAdapter(stripList,this);
+        StripAdapter stripAdapter = new StripAdapter(stripList,this,device.getDeviceIP());
         listStrips.setAdapter(stripAdapter);
 
     }
