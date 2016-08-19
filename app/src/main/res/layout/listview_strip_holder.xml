@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="fill_parent"
     android:layout_height="72dp"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    android:minHeight="72dp">
 
     <LinearLayout
         android:layout_width="40dp"
@@ -11,7 +12,8 @@
         android:background="@drawable/circle"
         android:layout_marginLeft="16dp"
         android:backgroundTint="@android:color/holo_red_light"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:id="@+id/iconLinearLayout">
 
         <TextView
             android:layout_width="match_parent"
@@ -52,6 +54,7 @@
         android:id="@+id/imageButton"
         android:layout_gravity="center_vertical|right"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_infoicon" />
+        android:src="@drawable/ic_infoicon"
+        style="@style/Widget.AppCompat.Light.ActionButton"/>
 
 </LinearLayout>

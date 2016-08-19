@@ -27,13 +27,13 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
     String name,id,pixels;
     EditText txtname,txtpixels,txtid;
     ImageButton btndelete;
+    int deviceId;
 
     int color;
     Boolean edit = false;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_strip);
-        Log.v("TESTE","TEST");
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarAddDevice);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -62,6 +62,7 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
         if(intent != null){
             Bundle bundle = intent.getExtras();
             if(bundle != null){
+                if(bundle.getString("stripName")!= null){
                 ((TextView) this.findViewById(R.id.action_add_device)).setText(getString(R.string.action_edit_strip));
 
                 strip.setId(bundle.getInt("stripId"));
@@ -75,8 +76,14 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
                 txtid.setText(strip.getId());
                 colorPicker.setSelectedColor(Integer.parseInt(strip.getColor()));
                 txtpixels.setText(strip.getPixels());
-                btndelete.setVisibility(View.VISIBLE);
+                btndelete.setVisibility(View.VISIBLE);}
+                else{
+                    deviceId = Integer.parseInt(bundle.getLong("deviceID") + "");
+
+                }
+
             }
+
         }
 
 
@@ -102,11 +109,17 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
                     break;
                 }
 
+                try{
+                    strip.setName(name);
+                    strip.setId(Integer.parseInt(id));
+                    strip.setColor(color+"");
+                    strip.setPixels(Integer.parseInt(pixels));
+                    strip.setDeviceID(deviceId);
+                }catch(Exception e){
 
-                strip.setName(name);
-                strip.setId(Integer.parseInt(id));
-                strip.setColor(color+"");
-                strip.setPixels(Integer.parseInt(pixels));
+
+                }
+
 
 
                 if (edit==true){
@@ -116,6 +129,7 @@ public class AddStripActivity extends AppCompatActivity implements View.OnClickL
                 }
 
                 else{
+                    Log.v("a",""+strip.getDeviceID());
                     db.insertStrip(strip);
                     Toast.makeText(this, getString(R.string.sucess_update), Toast.LENGTH_SHORT).show();
 

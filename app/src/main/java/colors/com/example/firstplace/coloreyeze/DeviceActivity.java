@@ -78,6 +78,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
                 device.setDeviceId(bundle.getLong("deviceId"));
                 device.setDeviceColor(bundle.getString("deviceColor"));
                 device.setDeviceName(bundle.getString("deviceName"));
+                loadStrips(Integer.parseInt(device.getDeviceId() + ""));
                 txtname.setText(device.getDeviceName());
                 txtip.setText(getString(R.string.add_device_dialog_DeviceIP) + " : " + device.getDeviceIP());
 
@@ -88,6 +89,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         }
+
 
     }
     public void tryConnection(){
@@ -100,7 +102,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
         else {
             txtStatus.setText(getString(R.string.state_connected));
             txtStatus.getBackground().setColorFilter(getResources().getColor(R.color.color_green),PorterDuff.Mode.SRC_ATOP);
-            loadStrips(Integer.parseInt(device.getDeviceId() + ""));
+
             listStrips.setVisibility(View.VISIBLE);
             stripTitle.setVisibility(View.VISIBLE);
             floatingADD.setVisibility(View.VISIBLE);
@@ -138,6 +140,7 @@ public class DeviceActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.floatingAdd :
                 intent = new Intent(this,AddStripActivity .class);
+                intent.putExtra("deviceID",device.getDeviceId());
                 startActivity(intent);
                 break;
             case R.id.btnRefresh :

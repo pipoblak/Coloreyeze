@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class DB {
         values.put("name",strip.getName());
         values.put("color",strip.getColor());
         values.put("pixels",strip.getPixels());
-        values.put("deviceID",strip.getPixels());
+        values.put("deviceID",strip.getDeviceID());
 
         db.insert("Strip",null,values);
     }
@@ -106,7 +107,11 @@ public class DB {
                 strip.setPixels(cursor.getInt(3));
                 strip.setDeviceID(cursor.getInt(4));
                 listStrips.add(strip);
+
             }while(cursor.moveToNext());
+
+        }
+        else{
 
         }
         cursor.close();
