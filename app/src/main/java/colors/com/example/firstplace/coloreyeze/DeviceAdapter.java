@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,6 +117,15 @@ public class DeviceAdapter extends BaseAdapter {
                             public void onClick(DialogInterface dialog, int which) {
                                 // The 'which' argument contains the index position
                                 // of the selected item
+                                switch (which){
+                                    case 0:
+                                        Log.v("oi","ola");
+                                        break;
+                                    case 1:
+                                        break;
+
+                                }
+
                             }
                         });
                 builder.create();

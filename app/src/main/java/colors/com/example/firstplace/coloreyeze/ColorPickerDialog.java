@@ -143,10 +143,28 @@ public class ColorPickerDialog extends Dialog implements OnColorChangedListener,
     }
 
     @Override
+    public void dismiss() {
+        super.dismiss();
+        try{
+            mWebSocket.close();
+        }catch(Exception e){
+
+
+        }
+
+    }
+
+    @Override
     public void onClick(View v) {
 
         switch(v.getId()) {
             case R.id.colorpickerview__color_panel_new:
+                try{
+                    mWebSocket.close();
+                }catch(Exception e){
+
+
+                }
               this.cancel();
                 break;
 
