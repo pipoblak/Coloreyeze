@@ -24,8 +24,9 @@
 
 
     <array name="effects">
-        <item>Rainbow</item>
-        <item>Running</item>
+        <item>Chroma</item>
+        <item>Cor Estática</item>
+        <item>Pulsando</item>
 
     </array>
 

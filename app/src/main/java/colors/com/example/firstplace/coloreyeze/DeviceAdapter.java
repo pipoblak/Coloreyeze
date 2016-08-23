@@ -105,7 +105,7 @@ public class DeviceAdapter extends BaseAdapter {
         btnEffects.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                final WebSocketCon webSocketCon = new WebSocketCon(list.get(auxPosition).getDeviceIP());
                 Intent intent = new Intent(context, ColorPickerActivity.class);
                 intent.putExtra("deviceId", list.get(auxPosition).getDeviceId());
                 intent.putExtra("deviceName", list.get(auxPosition).getDeviceName());
@@ -115,21 +115,33 @@ public class DeviceAdapter extends BaseAdapter {
                 builder.setTitle("Selecione um Efeito")
                         .setItems(R.array.effects, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // The 'which' argument contains the index position
-                                // of the selected item
+
+
                                 switch (which){
                                     case 0:
-                                        Log.v("oi","ola");
+                                        webSocketCon.sendMessage("@0D5S0");
                                         break;
                                     case 1:
+                                        webSocketCon.sendMessage("@1D5S0");
+                                        break;
+                                    case 2:
+                                        webSocketCon.sendMessage("@2D5S0");
                                         break;
 
                                 }
-
+                                webSocketCon.close();
                             }
                         });
+                builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        webSocketCon.close();
+                    }
+                });
+
                 builder.create();
                 builder.show();
+
             }
         });
 

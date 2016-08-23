@@ -1,6 +1,8 @@
 package colors.com.example.firstplace.coloreyeze;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
@@ -76,6 +78,45 @@ public class StripAdapter extends BaseAdapter  implements View.OnClickListener{
                 intent.putExtra("stripColor",  stripList.get(pos).getColor());
                 intent.putExtra("deviceID",  stripList.get(pos).getDeviceID());
                 context.startActivity(intent);
+            }
+        });
+
+        ImageButton btnEffects = (ImageButton) layout.findViewById(R.id.btnEffects);
+        btnEffects.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final WebSocketCon webSocketCon = new WebSocketCon(deviceIP);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Selecione um Efeito")
+                        .setItems(R.array.effects, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                switch (which){
+                                    case 0:
+                                        webSocketCon.sendMessage("@0D5S" + stripList.get(pos).getId());
+                                        break;
+                                    case 1:
+                                        webSocketCon.sendMessage("@1D5S" + stripList.get(pos).getId());
+                                        break;
+                                    case 2:
+                                        webSocketCon.sendMessage("@2D5S" + stripList.get(pos).getId());
+                                        break;
+
+                                }
+                                webSocketCon.close();
+                            }
+                        });
+                builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        webSocketCon.close();
+                    }
+                });
+
+                builder.create();
+                builder.show();
+
             }
         });
 
