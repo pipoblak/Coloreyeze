@@ -26,7 +26,7 @@ public class DB {
         values.put("name",device.getDeviceName());
         values.put("ip",device.getDeviceIP());
         values.put("color",device.getDeviceColor());
-
+        values.put("groupID",device.getGroupID());
         db.insert("Device",null,values);
     }
 
@@ -48,6 +48,8 @@ public class DB {
         values.put("name",device.getDeviceName());
         values.put("ip",device.getDeviceIP());
         values.put("color",device.getDeviceColor());
+        values.put("groupID",device.getGroupID());
+
         db.update("Device",values,"_id= ?",new String[]{"" + device.getDeviceId()});
     }
 
@@ -71,7 +73,7 @@ public class DB {
 
     public List<Device> searchAllDevices(){
         List <Device> listDevices = new ArrayList<Device>();
-        String[] columns = {"_id","name","ip","color"};
+        String[] columns = {"_id","name","ip","color","groupID"};
 
         Cursor cursor = db.query("Device",columns,null,null,null,null,"name ASC");
 
@@ -85,6 +87,7 @@ public class DB {
                 device.setDeviceName(cursor.getString(1));
                 device.setDeviceIP(cursor.getString(2));
                 device.setDeviceColor(cursor.getString(3));
+                device.setGroupID(cursor.getLong(4));
                 listDevices.add(device);
             }while(cursor.moveToNext());
 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bottom_normal"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorPrimary">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/optionsButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_above="@+id/deviceIp"
+            android:src="@drawable/ic_settings"
+            android:layout_marginLeft="5dp"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutTop">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Device Name"
+                android:id="@+id/deviceName"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:autoText="false"
+                android:textColor="@android:color/background_light"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:maxLines="2"
+                android:minLines="2"
+                android:singleLine="false"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Numeros de Devices"
+            android:id="@+id/deviceIp"
+            android:autoText="false"
+            android:textAlignment="center"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:elevation="0dp"
+            android:elegantTextHeight="false"
+            android:textColor="@android:color/background_light"
+            android:background="#e1404040" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_top_normal"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorPrimary">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_above="@+id/deviceIp"
+            android:id="@+id/btnShowColor"
+            android:src="@drawable/ic_colorpallet"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
+
+        <ImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_above="@+id/deviceIp"
+            android:id="@+id/btnEffects"
+            android:src="@drawable/ic_effects"
+            android:layout_marginLeft="5dp"
+            style="@style/Widget.AppCompat.Light.ActionButton" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

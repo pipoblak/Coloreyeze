@@ -6,8 +6,9 @@ package colors.com.example.firstplace.coloreyeze;
 public class Device {
     private String deviceName;
     private String deviceIP;
-    private long deviceId;
+    private long deviceId,groupID;
     private String deviceColor;
+
 
 
 
@@ -43,7 +44,12 @@ public class Device {
         this.deviceColor = deviceColor;
     }
 
+    public long getGroupID() {
+        return groupID;
+    }
 
-
+    public void setGroupID(long groupID) {
+        this.groupID = groupID;
+    }
 
 }

@@ -10,15 +10,16 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBCore extends SQLiteOpenHelper {
     private static final String NAME_DB="Coloreyeze";
-    private static final int VERSION_DB=6;
+    private static final int VERSION_DB=7;
     public DBCore(Context context){
         super(context,NAME_DB,null,VERSION_DB);
 
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Device(_id integer primary key autoincrement, name text not null, ip text not null, color text not null);");
+        db.execSQL("CREATE TABLE Device(_id integer primary key autoincrement, name text not null, ip text not null, color text not null,groupID integer);");
         db.execSQL("CREATE TABLE Strip(_id integer,name text not null,color text not null,pixels integer not null,deviceID integer not null);");
+        db.execSQL("CREATE TABLE DeviceGroup(_id integer,name text not null,color text not null);");
     }
 
     @Override

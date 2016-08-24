@@ -69,7 +69,9 @@
                 android:id="@+id/txtNameDevice"
                 android:layout_gravity="center_horizontal"
                 android:textAlignment="center"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:lines="1"
+                android:minLines="1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -85,7 +87,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtDeviceIp"
                 android:textAlignment="center"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:lines="1"
+                android:minLines="1" />
 
             <TextView
                 android:layout_width="wrap_content"
