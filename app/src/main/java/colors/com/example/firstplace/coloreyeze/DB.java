@@ -29,6 +29,13 @@ public class DB {
         values.put("groupID",device.getGroupID());
         db.insert("Device",null,values);
     }
+    public void insertDeviceGroup(DeviceGroup deviceGroup){
+        ContentValues values = new ContentValues();
+
+        values.put("name",deviceGroup.getGroupName());
+        values.put("color",deviceGroup.getGroupColor());
+        db.insert("DeviceGroup",null,values);
+    }
 
     public void insertStrip(Strip strip){
         ContentValues values = new ContentValues();
@@ -52,6 +59,14 @@ public class DB {
 
         db.update("Device",values,"_id= ?",new String[]{"" + device.getDeviceId()});
     }
+    public void updateDeviceGroup(DeviceGroup deviceGroup){
+        ContentValues values = new ContentValues();
+
+        values.put("name",deviceGroup.getGroupName());
+        values.put("color",deviceGroup.getGroupColor());
+        db.update("DeviceGroup",values,"_id= ?",new String[]{"" + deviceGroup.getGroupID()});
+    }
+
 
     public void updateStrip(Strip strip){
         ContentValues values = new ContentValues();
@@ -66,6 +81,9 @@ public class DB {
 
     public void delete(Device device){
         db.delete("Device","_id= ?",new String[]{"" + device.getDeviceId()});
+    }
+    public void deleteDeviceGroup(DeviceGroup deviceGroup){
+        db.delete("DeviceGroup","_id= ?",new String[]{"" + deviceGroup.getGroupID()});
     }
     public void deleteStrip(Strip strip){
         db.delete("Strip","_id= ? and deviceID=?",new String[]{"" + strip.getId(),"" + strip.getDeviceID()});
@@ -95,6 +113,31 @@ public class DB {
         cursor.close();
         return listDevices;
     }
+
+    public List<DeviceGroup> searchAllDeviceGroups(){
+        List <DeviceGroup> listDeviceGroups = new ArrayList<DeviceGroup>();
+        String[] columns = {"_id","name","color"};
+
+        Cursor cursor = db.query("DeviceGroup",columns,null,null,null,null,"name ASC");
+
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+
+            do{
+
+                DeviceGroup deviceGroup = new DeviceGroup();
+                deviceGroup.setGroupID(cursor.getLong(0));
+                deviceGroup.setGroupName(cursor.getString(1));
+                deviceGroup.setGroupColor(cursor.getString(2));
+
+                listDeviceGroups.add(deviceGroup);
+            }while(cursor.moveToNext());
+
+        }
+        cursor.close();
+        return listDeviceGroups;
+    }
+
     public List<Strip> searchAllStrips(int deviceID){
         List <Strip> listStrips = new ArrayList<Strip>();
         String[] columns = {"_id","name","color","pixels","deviceID"};

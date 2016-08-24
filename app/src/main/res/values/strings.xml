@@ -21,6 +21,7 @@
     <string name="add_device_dialog_DevicePixels">Número de Pixels</string>
     <string name="add_device_dialog_DeviceBtnSave">Salvar</string>
 
+    <string name="action_add_deviceGroup">Adicionar Grupo de Dispositivos</string>
 
     <string name="action_select_color">Selecionar Cor</string>
     <string name="action_select_color_switchStrip">Fita</string>
